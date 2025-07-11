@@ -26,7 +26,7 @@ def check_anomaly(row):
     Analyze the following transaction and determine if it is anomalous.
     Respond only with 'Yes' if it's anomalous or 'No' if it's normal.
     No need to explain your reasoning. Just provide a simple one word answer.
-    Any transaction with an amount greater than 10000 in USD or EUR may or may not be anomalous.
+    
 
     Transaction:
     ID: {row['transaction_id']}
