@@ -43,3 +43,24 @@ def check_anomaly(row):
 df["Anomalous"] = df.apply(check_anomaly, axis=1)
 
 print(df)
+
+def explain_anomaly(row):
+    prompt = f"""
+    You are a financial anomaly detection assistant.
+    Explain why the following transaction is considered anomalous or not.
+    
+    Transaction:
+    ID: {row['transaction_id']}
+    Amount: {row['amount']}
+    Currency: {row['currency']}
+    Country: {row['country']}
+    
+    Anomalous: {row['Anomalous']}
+    """
+
+    response = llm.invoke(prompt)
+    return response.content
+
+# Apply explanation to DataFrame
+df["Explanation"] = df.apply(explain_anomaly, axis=1)
+print(df[["transaction_id", "Anomalous", "Explanation"]])
